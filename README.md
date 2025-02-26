@@ -8,15 +8,14 @@ This project demonstrates how to interact with Uniswap V3 on Arbitrum chains. It
 - Adding liquidity to the pool
 - Transferring tokens
 
-## Setup
+## Environment Setup
 
-1. Install dependencies:
+The project uses environment variables for configuration. Two environment files are used:
 
-```shell
-yarn install
-```
+- `.env` - For Arbitrum Sepolia testnet (development)
+- `.env.mainnet` - For Arbitrum Mainnet (production)
 
-2. Create a `.env` file with the following variables:
+### Testnet Setup (`.env`)
 
 ```
 # RPC URL
@@ -35,52 +34,14 @@ TOKEN_ADDRESS=
 POOL_ADDRESS=
 ```
 
-## Deployment
-
-Deploy your token to Arbitrum Sepolia:
-
-```shell
-npx hardhat run scripts/deploy.js --network arbitrumSepolia
-```
-
-Add the deployed token address to your `.env` file.
-
-## Uniswap Pool Operations
-
-Create a new Uniswap V3 pool:
-
-```shell
-node scripts/createPool.js
-```
-
-Initialize the pool:
-
-```shell
-node scripts/initPool.js
-```
-
-Add the created pool address to your `.env` file.
-
-Add liquidity to the pool:
-
-```shell
-node scripts/addLiquidity.js
-```
-
-Transfer tokens:
-
-```shell
-node scripts/transfer.js
-```
-
-## For Mainnet Deployment
-
-Create a new `.env.mainnet` file with the correct Arbitrum mainnet addresses:
+### Mainnet Setup (`.env.mainnet`)
 
 ```
-# Arbitrum Mainnet
+# RPC URL
 RPC_URL=https://arb1.arbitrum.io/rpc
-PRIVATE_KEY=your_private_key_here
+
+# Private key (keep this secure and never commit to git)
+PRIVATE_KEY=your_mainnet_private_key_here
 
 # Uniswap Contracts (Arbitrum Mainnet)
 UNISWAP_FACTORY=0x1F98431c8aD98523631AE4a59f267346ea31F984
@@ -92,17 +53,69 @@ TOKEN_ADDRESS=
 POOL_ADDRESS=
 ```
 
-Then run scripts with the mainnet environment:
+## Installation
 
 ```shell
-ENV_FILE=.env.mainnet node scripts/deploy.js
+yarn install
 ```
 
-## Hardhat Tasks
+## Usage
+
+### Testnet Operations
+
+```shell
+# Deploy token
+yarn deploy:testnet
+
+# Create pool
+yarn create-pool:testnet
+
+# Initialize pool
+yarn init-pool:testnet
+
+# Add liquidity
+yarn add-liquidity:testnet
+
+# Transfer tokens
+yarn transfer:testnet
+```
+
+### Mainnet Operations
+
+First, add the mainnet network to your hardhat.config.js:
+
+```javascript
+arbitrumMainnet: {
+  url: process.env.RPC_URL,
+  accounts: [process.env.PRIVATE_KEY]
+}
+```
+
+Then run:
+
+```shell
+# Deploy token
+yarn deploy:mainnet
+
+# Create pool
+yarn create-pool:mainnet
+
+# Initialize pool
+yarn init-pool:mainnet
+
+# Add liquidity
+yarn add-liquidity:mainnet
+
+# Transfer tokens
+yarn transfer:mainnet
+```
+
+Remember to update the TOKEN_ADDRESS and POOL_ADDRESS in your .env files after deployment and pool creation.
+
+## Additional Commands
 
 ```shell
 npx hardhat help
 npx hardhat test
 npx hardhat compile
-npx hardhat node
 ```

@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-require("dotenv").config();
+require('dotenv').config({ path: process.env.ENV_FILE || '.env' });
 
 const POSITION_MANAGER = process.env.POSITION_MANAGER;
 const TOKEN_ADDRESS = process.env.TOKEN_ADDRESS;

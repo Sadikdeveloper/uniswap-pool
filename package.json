@@ -1,12 +1,24 @@
 {
-  "name": "uniswap-pool",
-  "version": "1.0.0",
-  "license": "MIT",
-  "dependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.0",
-    "@openzeppelin/contracts": "^4.9.0",
-    "dotenv": "^16.4.7",
-    "ethers": "^5.7.2",
-    "hardhat": "^2.19.0"
-  }
+	"name": "uniswap-pool",
+	"version": "1.0.0",
+	"license": "MIT",
+	"scripts": {
+		"deploy:testnet": "hardhat run scripts/deploy.js --network arbitrumSepolia",
+		"deploy:mainnet": "ENV_FILE=.env.mainnet hardhat run scripts/deploy.js --network arbitrumMainnet",
+		"create-pool:testnet": "node scripts/createPool.js",
+		"create-pool:mainnet": "ENV_FILE=.env.mainnet node scripts/createPool.js",
+		"init-pool:testnet": "node scripts/initPool.js",
+		"init-pool:mainnet": "ENV_FILE=.env.mainnet node scripts/initPool.js",
+		"add-liquidity:testnet": "node scripts/addLiquidity.js",
+		"add-liquidity:mainnet": "ENV_FILE=.env.mainnet node scripts/addLiquidity.js",
+		"transfer:testnet": "node scripts/transfer.js",
+		"transfer:mainnet": "ENV_FILE=.env.mainnet node scripts/transfer.js"
+	},
+	"dependencies": {
+		"@nomiclabs/hardhat-ethers": "^2.0.0",
+		"@openzeppelin/contracts": "^4.9.0",
+		"dotenv": "^16.4.7",
+		"ethers": "^5.7.2",
+		"hardhat": "^2.19.0"
+	}
 }

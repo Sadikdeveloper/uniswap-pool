@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-require("dotenv").config();
+require('dotenv').config({ path: process.env.ENV_FILE || '.env' });
 
 const RPC_URL = process.env.RPC_URL;
 const TOKEN_ADDRESS = process.env.TOKEN_ADDRESS;

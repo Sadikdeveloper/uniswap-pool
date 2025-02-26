@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-require("dotenv").config();
+require('dotenv').config({ path: process.env.ENV_FILE || '.env' });
 
 const UNISWAP_FACTORY = process.env.UNISWAP_FACTORY;
 const WETH = process.env.WETH;

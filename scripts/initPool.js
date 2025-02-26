@@ -1,5 +1,5 @@
 const { ethers } = require('ethers');
-require('dotenv').config();
+require('dotenv').config({ path: process.env.ENV_FILE || '.env' });
 
 
 const POOL_ADDRESS = process.env.POOL_ADDRESS;

@@ -1,5 +1,5 @@
 const { ethers } = require("hardhat");
-require("dotenv").config();
+require('dotenv').config({ path: process.env.ENV_FILE || '.env' });
 
 async function main() {
 	const [deployer] = await ethers.getSigners();
